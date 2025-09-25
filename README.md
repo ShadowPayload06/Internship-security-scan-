@@ -83,8 +83,11 @@ log4j-vulnerability-report/
 │   ├── CVE-2021-45105.txt
 ├── screenshots/
 │   ├── log4shell-list.png
-│   ├── post-fix-verification.png
+│   ├── post-fix-verification1.png
+│   ├── post-fix-verification2.png
 │   ├── log4shell-details.png (optional)
 │   ├── log4j-jar-locations.png (optional)
+
+See full analysis: [log4shell-cve44228.txt](log4j-analysis/log4shell-cve44228.txt)
 
 End of File
