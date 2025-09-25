@@ -88,6 +88,4 @@ log4j-vulnerability-report/
 │   ├── log4shell-details.png (optional)
 │   ├── log4j-jar-locations.png (optional)
 
-See full analysis: [log4shell-cve44228.txt](log4j-analysis/log4shell-cve44228.txt)
-
 End of File
