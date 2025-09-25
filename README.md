@@ -1,2 +1,90 @@
-# Internship-security-scan-
--  Nessus scan analysis and mitigation of Log4j vulnerabilities - 
+Log4j Vulnerability Report
+
+1. Scan Summary
+
+- Scan Name: Localhost Full Scan
+- Target: 127.0.0.1
+- Policy: Log4j Vulnerability Scan
+- Duration: ~6 minutes
+- Host Count: 1
+
+Vulnerabilities Detected:
+- CVE-2021-44228 – Remote Code Execution (Log4Shell)
+- CVE-2021-45046 – Bypass of initial fix
+- CVE-2021-45105 – Denial of Service
+- CVE-2021-44832 – Arbitrary Code Execution
+
+Screenshot Reference: log4shell-list.png
+
+2. Vulnerability Analysis
+
+CVE-2021-44228
+- Plugin ID: 155998
+- Affected Component: log4j-core-2.14.1.jar
+- Location: /usr/share/javasnoop/lib/
+- Description: Allows remote attackers to execute arbitrary code via JNDI lookups.
+- Fix: Replaced with log4j-core-2.17.1.jar
+- Verification: Confirmed via manifest inspection and Nessus re-scan
+- Screenshot: post-fix-verification.png
+
+CVE-2021-45046
+- Plugin ID: 156000
+- Description: Incomplete fix for CVE-2021-44228; allows information leakage or RCE.
+- Fix: Upgraded to log4j-core-2.17.1.jar
+- Screenshot: log4shell-list.png
+
+CVE-2021-45105
+- Plugin ID: 156001
+- Description: Uncontrolled recursion leading to DoS.
+- Fix: Upgraded to log4j-core-2.17.1.jar
+- Screenshot: log4shell-list.png
+
+CVE-2021-44832
+- Plugin ID: 156002
+- Description: Allows arbitrary code execution via misconfigured trust chains.
+- Fix: Upgraded to log4j-core-2.17.1.jar
+- Screenshot: log4shell-list.png
+
+3. Post-Mitigation Verification
+
+- Re-ran Nessus scan after replacing vulnerable JARs
+- CVE-2021-44228 no longer detected
+- Confirmed safe versions:
+  - log4j-core-2.17.1.jar
+  - log4j-api-2.24.3.jar (Maltego)
+  - log4j-core-2.24.3.jar (ZAP)
+- Screenshot: post-fix-verification.png
+
+4. Directory Audit of Log4j JARs
+
+Command used:
+find / -name "log4j*.jar" 2>/dev/null
+
+Verified presence of:
+- Safe versions: 2.17.1, 2.24.3
+- Removed: log4j-core-2.14.1.jar
+
+Screenshot: log4j-jar-locations.png (optional)
+
+5. Screenshots Summary
+
+- log4shell-list.png: Initial detection of Log4j vulnerabilities
+- post-fix-verification.png: Confirmation that CVE-2021-44228 is no longer present
+- log4shell-details.png: Detailed view of Log4Shell vulnerability (optional)
+- log4j-jar-locations.png: Terminal output listing JAR locations (optional)
+
+6. Repository Structure
+
+log4j-vulnerability-report/
+├── log4j-vulnerability-report.txt
+├── log4j-analysis/
+│   ├── CVE-2021-44228.txt
+│   ├── CVE-2021-45046.txt
+│   ├── CVE-2021-45105.txt
+├── screenshots/
+│   ├── log4shell-list.png
+│   ├── post-fix-verification.png
+│   ├── log4shell-details.png (optional)
+│   ├── log4j-jar-locations.png (optional)
+
+End of File
